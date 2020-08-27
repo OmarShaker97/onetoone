@@ -37,3 +37,19 @@ Route::get('/update/{id}/{address_name}', function($id,$address_name){
     $address->save();
 
 });
+
+Route::get('/read/{id}', function($id){
+
+    $user = User::findOrFail($id);
+
+    return $user->address->name;
+
+});
+
+Route::get('/delete/{id}', function($id){
+
+    $user = User::findOrFail($id);
+
+    $user->address->delete();
+
+});
